@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>The Psychic Game</title>
+    <title>The Word Game</title>
     <meta charset="UTF-8">
     <title>Jim Girardeau</title>
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
@@ -14,22 +14,37 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <script src="assets/javascript/game.js"></script>
 </head>
-</head>
 
 <body>
-    <h1 style="color:blue;">Guess an impressionist painter; push any key to start.</h1>
-
-    <div id="Win">Wins: 0</div>
-    <div id="Lose">Losses: 0</div>
-    <p></p>
-    <div>Current Word</div>
-    <p></p>
-    <div id="Word">_________</div>
-    <p></p>
-    <div id="Left">Guesses left: 14</div>
-    <div id="soFar">Your Guesses so far:</div>
-    <p></p>
-    <div id="debug"></div>
+    <div class="row">
+        <div class="col-md-12 head">
+            <h1 id="head1">Guess an impressionist painter</h1>
+            <h2 id="head2">Press any key to start</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-3 ">
+            <section id='border1'>
+                <div id="Win">Wins: 0</div>
+                <div id="Lose">Losses: 0</div>
+                <p></p>
+                <div>Current Word</div>
+                <p></p>
+                <div id="Word">_________</div>
+                <p></p>
+                <div id="Left">Guesses left: 14</div>
+                <div id="soFar">Your Guesses so far:</div>
+                <p></p>
+                <div id="debug"></div>
+            </section>
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
 
     <script>
         // declare vars
@@ -37,23 +52,23 @@
         var losses = 0;
         var guessesLeft = 14;
         var guessSoFar = " ";
-        var computerGuess = "";
-        var possibleGuesses = "abcdefghijklmnopqrstuvwxyz";
-        var wordDisplay="";
-       // var audio = new Audio('Twilight-zone-song.mp3');
+        var computerGuess = " ";
+        var possibleGuesses = "abcdefghijklmnopqrstuvwxyz ";
+        var wordDisplay = " ";
+        // var audio = new Audio('Twilight-zone-song.mp3');
         var artists = [
-            "Claude Monet",
-            "Vincent van Gogh",
-            "Pierre Auguste Renoir",
-            "Edgar Degas",
-            "Paul Cezanne",
-            "Edouard Manet"
+            "Claude Monet ",
+            "Vincent van Gogh ",
+            "Pierre Auguste Renoir ",
+            "Edgar Degas ",
+            "Paul Cezanne ",
+            "Edouard Manet "
         ];
 
-        function reset_game(){
-                guessesLeft=14;
-                wordDisplay="_________"; 
-                guessSoFar=" ";
+        function reset_game() {
+            guessesLeft = 14;
+            wordDisplay = "_________ ";
+            guessSoFar = " ";
         }
         document.onkeyup = function(event) {
             // Connect variables
@@ -69,29 +84,29 @@
                 // start of game, so pick a key
                 var random = Math.floor(Math.random() * artists.length);
                 computerGuess = artists[random].toLowerCase();
-                guessSoFar=" ";
+                guessSoFar = " ";
             }
-            if(guessSoFar.indexOf(userGuess)<0){
-                guessSoFar+=userGuess;
+            if (guessSoFar.indexOf(userGuess) < 0) {
+                guessSoFar += userGuess;
                 guessesLeft--;
             }
             // generate string to print
-            wordDisplay="";
-            for(var i=0;i<computerGuess.length;i++){
-                var char=computerGuess[i];
-                if(guessSoFar.indexOf(char)<0){
-                    wordDisplay+="_";
-                }
-                else{
-                    wordDisplay+=char;
+            wordDisplay = "";
+            for (var i = 0; i < computerGuess.length; i++) {
+                var char = computerGuess[i];
+                if (guessSoFar.indexOf(char) < 0) {
+                    wordDisplay += "_ ";
+                } else {
+                    wordDisplay += char;
                 }
             }
-            if(wordDisplay===computerGuess){
+            console.log("(" + wordDisplay + ")(" + computerGuess + ")");
+            if (wordDisplay === computerGuess) {
                 wins++;
                 reset_game();
             }
 
-            if(guessesLeft===0){
+            if (guessesLeft === 0) {
                 losses++;
                 reset_game();
             }
@@ -105,7 +120,6 @@
             debugElement.textContent = computerGuess;
         }
     </script>
-
 </body>
 
 </html>
