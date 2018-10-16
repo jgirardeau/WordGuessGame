@@ -1,2 +1,2 @@
-# WordGuessGame
-ut hw3
+# psychicgame
+ut hw3B
