@@ -30,5 +30,13 @@ body {
 }
 
 #border1 {
+    height:330px; 
+    width:380px;
+    border: 2px solid blue;
+}
+
+#artist{
+    height:330px; 
+    width:380px;
     border: 2px solid blue;
 }

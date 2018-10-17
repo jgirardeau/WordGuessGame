@@ -26,6 +26,7 @@
         <div class="col-md-3">
         </div>
         <div class="col-md-3">
+            <img id="artist">
         </div>
         <div class="col-md-3 ">
             <section id='border1'>
@@ -53,7 +54,6 @@
         var guessesLeft = 14;
         var guessSoFar = " ";
         var computerGuess = " ";
-        var possibleGuesses = "abcdefghijklmnopqrstuvwxyz ";
         var wordDisplay = " ";
         // var audio = new Audio('Twilight-zone-song.mp3');
         var artists = [
@@ -62,7 +62,43 @@
             "Pierre Auguste Renoir ",
             "Edgar Degas ",
             "Paul Cezanne ",
-            "Edouard Manet "
+            "Edouard Manet ",
+            "Mary Cassatt",
+            "Alfred Sisley",
+            "Camille Pissarro",
+            "Henri Matisse",
+            "Berthe Morisot",
+            "Leonardo da Vinci",
+            "Gustave Caillebotte",
+            "Henri de Toulouse Lautrec",
+            "Frederic Bazille",
+            "Auguste Rodin",
+            "Childe Hassam",
+            "Georges Pierre Seurat",
+            "Eva Gonzales",
+            "Eugene Boudin"
+        ];
+        var pictures = [
+            "assets/images/Monet.png",
+            "assets/images/Gogh.png",
+            "assets/images/Renoir.png",
+            "assets/images/Degas.png",
+            "assets/images/Cezanne.png",
+            "assets/images/Manet.png",
+            "assets/images/Cassatt.png",
+            "assets/images/Sisley.png",
+            "assets/images/Pissarro.png",
+            "assets/images/Matisse.png",
+            "assets/images/Morisot.png",
+            "assets/images/Vinci.png",
+            "assets/images/Caillebotte.png",
+            "assets/images/Lautrec.png",
+            "assets/images/Bazille.png",
+            "assets/images/Rodisn.png",
+            "assets/images/Hassam.png",
+            "assets/images/Seurat.png",
+            "assets/images/Gonzales.png",
+            "assets/images/Boudin.png"
         ];
 
         function reset_game() {
@@ -70,6 +106,11 @@
             wordDisplay = "_________ ";
             guessSoFar = " ";
         }
+
+        function set_image(artistElement, indx) {
+            artistElement.src = pictures[indx].toLowerCase();
+        }
+
         document.onkeyup = function(event) {
             // Connect variables
             var userGuess = event.key;
@@ -79,12 +120,14 @@
             var soFarElement = document.getElementById('soFar');
             var wordElement = document.getElementById('Word');
             var debugElement = document.getElementById('debug');
+            var artistElement = document.getElementById('artist');
             // start of game
             if (guessesLeft === 14) {
                 // start of game, so pick a key
                 var random = Math.floor(Math.random() * artists.length);
                 computerGuess = artists[random].toLowerCase();
                 guessSoFar = " ";
+                set_image(artistElement, random);
             }
             if (guessSoFar.indexOf(userGuess) < 0) {
                 guessSoFar += userGuess;
