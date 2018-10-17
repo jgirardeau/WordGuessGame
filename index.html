@@ -55,6 +55,8 @@
         var guessSoFar = " ";
         var computerGuess = " ";
         var wordDisplay = " ";
+        var setOpacity = "1";
+        var start = 0;
         // var audio = new Audio('Twilight-zone-song.mp3');
         var artists = [
             "Claude Monet ",
@@ -94,7 +96,7 @@
             "assets/images/Caillebotte.png",
             "assets/images/Lautrec.png",
             "assets/images/Bazille.png",
-            "assets/images/Rodisn.png",
+            "assets/images/Rodin.png",
             "assets/images/Hassam.png",
             "assets/images/Seurat.png",
             "assets/images/Gonzales.png",
@@ -125,13 +127,22 @@
             if (guessesLeft === 14) {
                 // start of game, so pick a key
                 var random = Math.floor(Math.random() * artists.length);
+                random = start++;
                 computerGuess = artists[random].toLowerCase();
                 guessSoFar = " ";
                 set_image(artistElement, random);
+                setOpacity = "1";
+
             }
+            artistElement.style.opacity = setOpacity;
             if (guessSoFar.indexOf(userGuess) < 0) {
                 guessSoFar += userGuess;
                 guessesLeft--;
+                setOpacity -= .1;
+                if (setOpacity < .1) {
+                    setOpacity = "0.2";
+                }
+                console.log("opacity " + setOpacity);
             }
             // generate string to print
             wordDisplay = "";
@@ -146,11 +157,14 @@
             console.log("(" + wordDisplay + ")(" + computerGuess + ")");
             if (wordDisplay === computerGuess) {
                 wins++;
+                artistElement.style.opacity = "1";
                 reset_game();
             }
 
             if (guessesLeft === 0) {
                 losses++;
+                artistElement.style.opacity = ".2";
+                opacity = .5;
                 reset_game();
             }
 
