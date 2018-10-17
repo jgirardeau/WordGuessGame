@@ -57,7 +57,8 @@
         var wordDisplay = " ";
         var setOpacity = "1";
         var start = 0;
-        // var audio = new Audio('Twilight-zone-song.mp3');
+        var audio = new Audio('daily_download_20170213_128.mp3');
+
         var artists = [
             "Claude Monet ",
             "Vincent van Gogh ",
@@ -158,6 +159,7 @@
             if (wordDisplay === computerGuess) {
                 wins++;
                 artistElement.style.opacity = "1";
+                audio.play();
                 reset_game();
             }
 
@@ -165,6 +167,8 @@
                 losses++;
                 artistElement.style.opacity = ".2";
                 opacity = .5;
+                audio.pause();
+                audio.currentTime = 0;
                 reset_game();
             }
 
