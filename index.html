@@ -12,6 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!-- <script src="assets/javascript/game.js"></script> -->
 </head>
 
 <body>
@@ -39,10 +40,10 @@
                 <div id="Left">Guesses left: 14</div>
                 <div id="soFar">Your Guesses so far:</div>
                 <p></p>
-              <!--   <form action="/action_page.php" method="get">
-                    <input type="checkbox" id="Hint" checked>Show hint<br>
+                <form action="/action_page.php" method="get">
+                    <input type="checkbox" id="Hint" uncheck> Show hint<br>
                 </form>
-                <div id="showHint"></div> -->
+                <div id="showHint"></div>
             </section>
         </div>
         <div class="col-md-3">
@@ -132,21 +133,22 @@
             if (guessesLeft === 14) {
                 // start of game, so pick a key
                 var random = Math.floor(Math.random() * artists.length);
-                random = start++;
+                // random = start++;
                 computerGuess = artists[random].toLowerCase();
                 guessSoFar = " ";
                 set_image(artistElement, random);
                 setOpacity = "1";
-
+                artistElement.style.opacity = setOpacity;
             }
-            artistElement.style.opacity = setOpacity;
+
             if (guessSoFar.indexOf(userGuess) < 0) {
                 guessSoFar += userGuess;
                 guessesLeft--;
                 setOpacity -= .1;
                 if (setOpacity < .1) {
-                    setOpacity = "0.2";
+                    setOpacity = "0.1";
                 }
+                artistElement.style.opacity = setOpacity;
                 console.log("opacity " + setOpacity);
             }
             // generate string to print
@@ -162,25 +164,25 @@
             console.log("(" + wordDisplay + ")(" + computerGuess + ")");
             if (wordDisplay === computerGuess) {
                 wins++;
-                artistElement.style.opacity = "1";
+                setOpacity = "1";
                 audio.play();
                 reset_game();
+                artistElement.style.opacity = setOpacity;
             }
 
             if (guessesLeft === 0) {
                 losses++;
-                artistElement.style.opacity = ".2";
-                opacity = .5;
+                artistElement.style.opacity = ".1";
                 audio.pause();
                 audio.currentTime = 0;
                 reset_game();
+                alert("The artist was: " + computerGuess);
             }
-            // tutor
-            // if (hintElement.checked) {
-            //     showHintElement.textcontent = "TRUE";
-            // } else {
-            //     showHintElement.textcontent = "FALSE";
-            // }
+            if (hintElement.checked) {
+                showHintElement.textContent = computerGuess.substr(0, computerGuess.length / 2);
+            } else {
+                showHintElement.textContent = "";
+            }
 
             // Output results
             winElement.textContent = "Wins: " + wins;
