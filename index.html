@@ -12,7 +12,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <script src="assets/javascript/game.js"></script>
 </head>
 
 <body>
@@ -40,7 +39,10 @@
                 <div id="Left">Guesses left: 14</div>
                 <div id="soFar">Your Guesses so far:</div>
                 <p></p>
-                <div id="debug"></div>
+              <!--   <form action="/action_page.php" method="get">
+                    <input type="checkbox" id="Hint" checked>Show hint<br>
+                </form>
+                <div id="showHint"></div> -->
             </section>
         </div>
         <div class="col-md-3">
@@ -124,6 +126,8 @@
             var wordElement = document.getElementById('Word');
             var debugElement = document.getElementById('debug');
             var artistElement = document.getElementById('artist');
+            var hintElement = document.getElementById('Hint');
+            var showHintElement = document.getElementById('showHint');
             // start of game
             if (guessesLeft === 14) {
                 // start of game, so pick a key
@@ -171,6 +175,12 @@
                 audio.currentTime = 0;
                 reset_game();
             }
+            // tutor
+            // if (hintElement.checked) {
+            //     showHintElement.textcontent = "TRUE";
+            // } else {
+            //     showHintElement.textcontent = "FALSE";
+            // }
 
             // Output results
             winElement.textContent = "Wins: " + wins;
@@ -178,7 +188,7 @@
             leftElement.textContent = "Guesses left: " + guessesLeft;
             soFarElement.textContent = "Your Guesses so far: " + guessSoFar;
             wordElement.textContent = wordDisplay;
-          //  debugElement.textContent = computerGuess;
+            //  debugElement.textContent = computerGuess;
         }
     </script>
 </body>
